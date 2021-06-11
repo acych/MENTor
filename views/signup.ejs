@@ -1,6 +1,60 @@
 <%- include("header") -%>
 
-LALALLALALLA
+
+<div class="container pt-5" style="background-color: #789DA9;">
+  <div style="text-align:center">
+  <h1><strong>SIGN UP</strong></h1>
+  <h3 class="Truetypewriter mb-4">Complete the form</h3>
+  <form class="" action="/newMember" method="post">
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="form-floating mb-3 col-6">
+        <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com">
+        <label for="email" style="margin-left:5%">Email address</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="form-floating mb-3 col-6">
+        <input type="password mb-3" class="form-control" name="password" id="password" placeholder="Password">
+        <label for="password" style="margin-left:5%">Password</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="form-floating mb-3 col-6">
+        <input type="password" class="form-control" name="passwordValid" id="passwordValid" placeholder="Password">
+        <label for="passwordValid" style="margin-left:5%">Retype Password</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="form-floating mb-3 col-6">
+        <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+        <label for="name" style="margin-left:5%">Name</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="form-floating mb-3 col-6">
+        <input type="text" class="form-control" name="surname" id="surname" placeholder="Surname">
+        <label for="surname" style="margin-left:5%">Surname</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="form-floating mb-3 col-6">
+        <input type="text" class="form-control" name="birthday" id="birthday" placeholder="birthday">
+        <label for="birthday" style="margin-left:5%">Birthday</label>
+      </div>
+    </div>
+    <button class="btn my-btn" type="submit" name="button" style="border:2px solid #343434;background-color:rgb(168,192,199);color:black">Sign Up</button>
+  </form>
+</div>
+
+</div>
+
+
 
 
 <%- include("footer") -%>

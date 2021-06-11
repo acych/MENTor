@@ -149,3 +149,8 @@ a:hover{
   max-width:80%;
   max-height:80%;
 }
+
+ /* Sign-up form */
+.field{
+  width: 25%;
+}

@@ -34,7 +34,40 @@
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
+
     <div class="carousel-inner">
+      <% var flag=0 %>
+      <% activityItems.forEach(function(item){ %>
+        <% if (flag==0){%>
+          <div class="carousel-item active">
+          <% flag=1 %>
+        <%}else{%>
+          <div class="carousel-item">
+        <%}%>
+        <div class="row">
+          <h1 class="menu-title d-md-none"><strong>OUR ACTIVITIES</strong></h1>
+          <div class="col-md-6 activities">
+            <h1 class="menu-title col-md-6 d-none d-md-block"><strong>OUR ACTIVITIES</strong></h1><br>
+            <p>JOIN <span class="Truetypewriter"> our</span></p>
+            <p><%= item.title %></p>
+            <p><span class="Truetypewriter">in </span><%= item.location %></p><br>
+            <p><%= item.date %></p>
+            <button class="btn my-btn" name="button" style="margin-bottom:15%">Details</button>
+
+          </div>
+          <div class="col-md-6 d-none d-md-block">
+            <img class="right-image hidden-sm" src="./assets/images/<%= item.img %>">
+          </div>
+        </div>
+
+      </div>
+      <%})%>
+
+
+
+
+
+
 
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
