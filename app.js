@@ -14,20 +14,87 @@ const activitySchema = new mongoose.Schema({
   details: String
 })
 
+const Activity = new mongoose.model("Activity", activitySchema);
+
 const userSchema = new mongoose.Schema({
   email: String,
   password: String,
   name: String,
   surname: String,
   birthday: String,
-  activities: [Activity]
+  activities: [activitySchema]
 })
+
+const disorderSchema = new mongoose.Schema({
+  title: String,
+  info: String,
+  details: String,
+  img: String
+})
+
+const Disorder = new mongoose.model("Disorder", disorderSchema);
+
+// const disorder = new Disorder({
+//   title: "Bipolar affective disorder",
+//   info: "Bipolar affective disorder is a type of mood disorder, previously referred to as ‘manic depression’. A person with bipolar disorder experiences episodes of mania (elation) and depression. The person may or may not experience psychotic symptoms. The exact cause is unknown, but a genetic predisposition has been clearly established. Environmental stressors can also trigger episodes of this mental illness.",
+//   details: "https://www.betterhealth.vic.gov.au/health/conditionsandtreatments/bipolar-disorder",
+//   img: "bipolar.jpg"
+// });
+
+// disorder.save();
+
+// const disorder = new Disorder({
+//   title: "Obsessive compulsive disorder",
+//   info: "Obsessive compulsive disorder (OCD) is an anxiety disorder. Obsessions are recurrent thoughts, images or impulses that are intrusive and unwanted. Compulsions are time-consuming and distressing repetitive rituals. Ttreatments include cognitive behaviour therapy (CBT), and medications.",
+//   details: "https://www.betterhealth.vic.gov.au/health/conditionsandtreatments/obsessive-compulsive-disorder",
+//   img: "ocd.jpg"
+// });
+
+// const disorder = new Disorder({
+//   title: "Behavioural and emotional disorders in children",
+//   info: "Common behaviour disorders in children include oppositional defiant disorder (ODD), conduct disorder (CD) and attention deficit hyperactivity disorder (ADHD). Treatment for these mental health disorders can include therapy, education and medication.",
+//   details: "https://www.betterhealth.vic.gov.au/health/healthyliving/behavioural-disorders-in-children",
+//   img: "behavioural.jpg"
+// });
+
+// const disorder = new Disorder({
+//   title: "Eating disorders",
+//   info: "Eating disorders include anorexia, bulimia nervosa and other binge eating disorders. Eating disorders affect females and males and can have serious psychological and physical consequences.",
+//   details: "https://www.betterhealth.vic.gov.au/health/healthyliving/eating-disorders",
+//   img: "eating.jpg"
+// });
+
+// const disorder = new Disorder({
+//   title: "Eating disorders",
+//   info: "Eating disorders include anorexia, bulimia nervosa and other binge eating disorders. Eating disorders affect females and males and can have serious psychological and physical consequences.",
+//   details: "https://www.betterhealth.vic.gov.au/health/healthyliving/eating-disorders",
+//   img: "eating.jpg"
+// });
+
+
+// const disorder = new Disorder({
+//   title: "Schizophrenia",
+//   info: "Schizophrenia is a complex psychotic disorder characterised by disruptions to thinking and emotions, and a distorted perception of reality. Symptoms of schizophrenia vary widely but may include hallucinations, delusions, thought disorder, social withdrawal, lack of motivation and impaired thinking and memory. People with schizophrenia have a high risk of suicide. Schizophrenia is not a split personality.",
+//   details: "https://www.betterhealth.vic.gov.au/health/conditionsandtreatments/schizophrenia",
+//   img: "schizophrenia.jpg"
+// });
+
+// const disorder = new Disorder({
+//   title: "Schizophrenia",
+//   info: "Schizophrenia is a complex psychotic disorder characterised by disruptions to thinking and emotions, and a distorted perception of reality. Symptoms of schizophrenia vary widely but may include hallucinations, delusions, thought disorder, social withdrawal, lack of motivation and impaired thinking and memory. People with schizophrenia have a high risk of suicide. Schizophrenia is not a split personality.",
+//   details: "https://www.betterhealth.vic.gov.au/health/conditionsandtreatments/schizophrenia",
+//   img: "schizophrenia.jpg"
+// });
+
+
+
+
+
 
 var activitiesTitle = [];
 var activitiesLocation = [];
 var activitiesDate = [];
 
-const Activity = new mongoose.model("Activity", activitySchema);
 const User = new mongoose.model("User", userSchema);
 
 var items = [];
@@ -49,11 +116,10 @@ app.get("/",(req,res)=>{
 app.post("/",(req,res)=>{
   var email = req.body.email;
   var password = req.body.password;
-  for (var aUser in allUsers){
-    if (email==allUsers[aUser]["email"] && password==allUsers[aUser]["password"]){
-      userName=allUsers[aUser]["name"];
-    }
-  }
+  User.findOne({ email: req.body.email,  password: req.body.password},function (err, person) {
+  if (err) return handleError(err);
+  userName=person.name;
+})
   res.redirect("/");
 })
 
@@ -63,8 +129,23 @@ app.get("/logout",(req,res)=>{
 })
 
 app.get("/signup",(req,res)=>{
-  res.render('signup',{Title:"Sign Up",userName:userName});
+  res.render('signup');
 })
+
+app.get("/mentalHealth",(req,res)=>{
+  Disorder.find(function(error,foundDisorders){
+    res.render('mental-health',{Title:"Mental Health",userName:userName,disorderItems:foundDisorders});
+  });
+})
+
+
+app.get("/activity",(req,res)=>{
+  Activity.findOne({ _id:req.query.id},function(error,foundActivity){
+    res.render('activity-details',{Title:foundActivity.title,userName:userName});
+  });
+})
+
+
 
 app.post("/newMember",(req,res)=>{
   const newMember = new User({

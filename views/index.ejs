@@ -52,7 +52,8 @@
             <p><%= item.title %></p>
             <p><span class="Truetypewriter">in </span><%= item.location %></p><br>
             <p><%= item.date %></p>
-            <button class="btn my-btn" name="button" style="margin-bottom:15%">Details</button>
+            <% var activityHref = "./activity?id=" + item._id %>
+            <a href=<%= activityHref %>><button class="btn my-btn" name="button" style="margin-bottom:15%">Details</button></a>
 
           </div>
           <div class="col-md-6 d-none d-md-block">
@@ -62,12 +63,6 @@
 
       </div>
       <%})%>
-
-
-
-
-
-
 
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -96,7 +91,7 @@
           that can affect a person’s thinking, perceptions, mood or behaviour. Mental disorder can make it difficult
           for someone to cope with work, relationships and other demands.
         </p>
-          <a href="./mental-health.html"><button class="btn my-btn" name="button">Learn More</button></a>
+          <a href="./mentalHealth"><button class="btn my-btn" name="button">Learn More</button></a>
       </div>
       <div class="col-md-6 d-md-none" style="text-align:center;">
         <img class="small-img hidden-sm" src="./assets/images/mental-illness-sm.png" alt="man-in-bed">

@@ -23,7 +23,12 @@
 
   <nav class="navbar main-nav navbar-expand-md navbar-light nav-fill w-100 sticky-top">
   <div class="container-fluid">
-    <a class="logo active-nav" href="/">MENTor</a>
+    <% if (Title=="MENTor"){%>
+      <a class="logo active-nav" href="/">MENTor</a>
+    <%} else{%>
+      <a class="logo" href="/">MENTor</a>
+    <%}%>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -33,7 +38,11 @@
           <a class="nav-li" aria-current="page" href="#carouselExampleIndicators">Our Activities</a>
         </li>
         <li class="nav-item">
-          <a class="nav-li" href="#mental-health">About Mental Health</a>
+          <% if (Title=="Mental Health"){%>
+            <a class="nav-li active-nav" href="#mental-health">About Mental Health</a>
+          <%} else{%>
+              <a class="nav-li" href="#mental-health">About Mental Health</a>
+          <%}%>
         </li>
         <li class="nav-item">
           <a class="nav-li" href="#support-us">Support Us</a>

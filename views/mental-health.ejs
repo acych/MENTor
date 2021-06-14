@@ -1,0 +1,147 @@
+<%- include("header") -%>
+
+<nav class="navbar secondary-nav main-nav navbar-expand-md navbar-light nav-fill w-100">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav justify-content-between w-100">
+        <li class="nav-item">
+          <a class="nav-li" aria-current="page" href="#">Types</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-li" href="#">Symptoms</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-li" href="#">Helping a loved one</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-li" href="#">Causes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-li" href="#">Risk factors</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-li" href="#">Complications</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-li" href="#">Prevention</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Intro section -->
+  <div class="row mt-5">
+    <div class="col-md-6" style="padding:0">
+      <div class="d-block d-sm-block d-md-none">
+          <img class="small-img" src="./assets/images/mental-illness-sm.png" />
+      </div>
+      <div class="d-none d-md-block" style="text-align:center">
+        <img class="img-responsive" src="./assets/images/mental-illness-round.png" style="width:80%">
+      </div>
+    </div>
+    <div class="col-md-6 d-none d-md-block intro">
+      <p class="Truetypewriter mental-text">
+      There are many different mental disorders, with different presentations.
+      They are generally characterized by a combination of abnormal thoughts, perceptions,
+      emotions, behaviour and relationships with others. Mental disorders include: depression,
+      bipolar disorder, schizophrenia and other psychoses, dementia, and developmental
+      disorders including autism. There are effective strategies for preventing mental disorders
+      such as depression. There are effective treatments for mental disorders and ways to alleviate
+      the suffering caused by them. Access to health care and social services capable of providing
+      treatment and social support is key.
+      </p>
+    </div>
+  </div>
+
+
+<!-- Types -->
+<div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+  </div>
+
+  <div class="carousel-inner">
+    <% var flag=0 %>
+    <% disorderItems.forEach(function(item){ %>
+      <% if (flag==0){%>
+        <div class="carousel-item active">
+        <% flag=1 %>
+      <%}else{%>
+        <div class="carousel-item">
+      <%}%>
+      <div class="row">
+        <h1 class="menu-title d-md-none"><strong>TYPES OF DISORERS</strong></h1>
+        <div class="col-md-6 activities">
+          <h1 class="menu-title col-md-6 d-none d-md-block"><strong>TYPES OF DISORDERS</strong></h1><br>
+          <h1><strong><%= item.title %></strong></h1>
+          <p class="mental-text Truetypewriter" style="font-size: 1.5rem; margin-bottom:-3%"><%= item.info %></p><br>
+          <button class="btn my-btn" name="button" style="margin-top:0">More</button>
+
+        </div>
+        <div class="col-md-6 d-none d-md-block">
+          <img class="right-image hidden-sm" src="./assets/images/<%= item.img %>">
+        </div>
+      </div>
+
+    </div>
+    <%})%>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+
+
+<!-- Symptoms -->
+<div class="row">
+  <div class="col-md-6" style="padding:0">
+    <h1 class="menu-title d-md-none"><strong>SYMPTOMS</strong></h1>
+    <div class="d-block d-sm-block d-md-none">
+        <img class="small-img" src="./assets/images/symptoms.jpg" />
+    </div>
+    <div class="d-none d-md-block">
+      <img class="left-image img-responsive" src="./assets/images/symptoms.jpg" alt="man-with-mist">
+    </div>
+  </div>
+  <div class="col-md-6 d-none d-md-block intro">
+    <h1 class="menu-title"><strong>SYMPTOMS</strong></h1>
+    <p class="Truetypewriter" style="font-size:1.2rem">
+      Signs and symptoms of mental illness can vary, depending on the disorder, circumstances and other factors. Mental illness symptoms can affect emotions, thoughts and behaviors.
+      <br>Examples of signs and symptoms include:
+      <ul class="Truetypewriter" style="font-size:1.2rem">
+        <li>Feeling sad or down</li>
+        <li>Confused thinking or reduced ability to concentrate</li>
+        <li>Excessive fears or worries, or extreme feelings of guilt</li>
+        <li>Extreme mood changes of highs and lows</li>
+        <li>Withdrawal from friends and activities</li>
+        <li>Significant tiredness, low energy or problems sleeping</li>
+        <li>Detachment from reality (delusions), paranoia or hallucinations</li>
+        <li>Inability to cope with daily problems or stress</li>
+        <li>Trouble understanding and relating to situations and to people</li>
+        <li>Problems with alcohol or drug use</li>
+        <li>Major changes in eating habits</li>
+        <li>Sex drive changes</li>
+        <li>Excessive anger, hostility or violence</li>
+        <li>Suicidal thinking</li>
+      </ul><p class="Truetypewriter" style="font-size:1.2rem">
+        Sometimes symptoms of a mental health disorder appear as physical problems, such as stomach pain, back pain, headaches, or other unexplained aches and pains.
+        </p>
+    </p>
+  </div>
+</div>
+
+<%- include("footer") -%>

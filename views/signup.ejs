@@ -5,7 +5,8 @@
   <div style="text-align:center">
   <h1><strong>SIGN UP</strong></h1>
   <h3 class="Truetypewriter mb-4">Complete the form</h3>
-  <form class="" action="/newMember" method="post">
+
+  <form onSubmit = "return checkPassword(this)" action="/newMember" method="post">
     <div class="row">
       <div class="col-3"></div>
       <div class="form-floating mb-3 col-6">
@@ -54,7 +55,27 @@
 
 </div>
 
+<script>
+  function checkPassword(form) {
+      password = form.password.value;
+      passwordValid = form.passwordValid.value;
 
+      if (password == '')
+          alert ("Please enter Password");
+
+      else if (passwordValid == '')
+          alert ("Please enter confirm password");
+
+      else if (password != passwordValid) {
+          alert ("\nPassword did not match: Please try again...")
+          return false;
+      }
+
+      else{
+          return true;
+      }
+  }
+</script>
 
 
 <%- include("footer") -%>

@@ -26,6 +26,7 @@ a:hover{
   position: fixed;
   margin-top: 1%;
   background-color: rgba(120,157,169,50%);
+  z-index: 50;
 }
 
 .nav-li{
@@ -42,7 +43,8 @@ a:hover{
 }
 
 .active-nav{
-  border-bottom : 3px solid #4C5C59;
+  color: #4C5C59;
+  /* border-bottom : 3px solid #4C5C59; */
 }
 
 .login-form{
