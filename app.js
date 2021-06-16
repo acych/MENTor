@@ -129,7 +129,7 @@ app.get("/logout",(req,res)=>{
 })
 
 app.get("/signup",(req,res)=>{
-  res.render('signup');
+  res.render('signup',{Title:"Sign Up",userName:userName});
 })
 
 app.get("/mentalHealth",(req,res)=>{
@@ -141,8 +141,37 @@ app.get("/mentalHealth",(req,res)=>{
 
 app.get("/activity",(req,res)=>{
   Activity.findOne({ _id:req.query.id},function(error,foundActivity){
-    res.render('activity-details',{Title:foundActivity.title,userName:userName});
+    res.render('activity-details',{Title:foundActivity.title,userName:userName,Activity:foundActivity});
   });
+})
+
+app.get("/join",(req,res)=>{
+  if (userName!="not-logged"){
+
+      // User.findOne({username:userName},function(error,foundUser){
+        Activity.findOne({ _id:req.query.id},function(error,foundActivity){
+            User.findOne({name:userName},function(error,foundUser){
+              var flag=0;
+              for(var x in foundUser.activities){
+                if(foundUser.activities[x]._id.equals(foundActivity._id)){
+                  flag=1;
+                  res.render('my-activities',{Title:"My activities",Activities:foundUser.activities,userName:userName});
+                }
+              }
+              if(flag==0){
+                var activitiesArray = foundUser.activities;
+                  activitiesArray.push(foundActivity);
+                  User.updateOne({username:userName},{activities:activitiesArray},function(error){
+                     foundUser.save();
+                     res.render('my-activities',{Title:"My activities",Activities:foundUser.activities,userName:userName});
+                   });
+              }
+            });
+        });
+  }else{
+    res.render('login-page',{Title:"Login",userName:userName});
+  }
+
 })
 
 
