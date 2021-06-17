@@ -1,7 +1,19 @@
 <%- include("header") -%>
 
 
-
+<h1 style="text-align:center;margin:5%;"><strong>My Activities</strong></h1>
+<% Activities.forEach(function(item){ %>
+    <div class="container" style="margin-bottom:3%">
+      <div class="row">
+      <div class="col-3">
+        <img style="width:100%" src="./assets/images/<%= item.img %>" alt="">
+      </div>
+      <div class="col-6" style="margin-top:7%">
+        <h3 class="Truetypewriter"><%= item.title %></h3>
+      </div>
+    </div>
+  </div>
+<%})%>
 
 
 <%- include("footer") -%>

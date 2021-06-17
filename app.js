@@ -40,7 +40,7 @@ const Disorder = new mongoose.model("Disorder", disorderSchema);
 //   details: "https://www.betterhealth.vic.gov.au/health/conditionsandtreatments/bipolar-disorder",
 //   img: "bipolar.jpg"
 // });
-
+//
 // disorder.save();
 
 // const disorder = new Disorder({
@@ -49,6 +49,8 @@ const Disorder = new mongoose.model("Disorder", disorderSchema);
 //   details: "https://www.betterhealth.vic.gov.au/health/conditionsandtreatments/obsessive-compulsive-disorder",
 //   img: "ocd.jpg"
 // });
+// disorder.save();
+
 
 // const disorder = new Disorder({
 //   title: "Behavioural and emotional disorders in children",
@@ -56,6 +58,9 @@ const Disorder = new mongoose.model("Disorder", disorderSchema);
 //   details: "https://www.betterhealth.vic.gov.au/health/healthyliving/behavioural-disorders-in-children",
 //   img: "behavioural.jpg"
 // });
+// disorder.save();
+
+
 
 // const disorder = new Disorder({
 //   title: "Eating disorders",
@@ -63,13 +68,10 @@ const Disorder = new mongoose.model("Disorder", disorderSchema);
 //   details: "https://www.betterhealth.vic.gov.au/health/healthyliving/eating-disorders",
 //   img: "eating.jpg"
 // });
+// disorder.save();
 
-// const disorder = new Disorder({
-//   title: "Eating disorders",
-//   info: "Eating disorders include anorexia, bulimia nervosa and other binge eating disorders. Eating disorders affect females and males and can have serious psychological and physical consequences.",
-//   details: "https://www.betterhealth.vic.gov.au/health/healthyliving/eating-disorders",
-//   img: "eating.jpg"
-// });
+
+
 
 
 // const disorder = new Disorder({
@@ -78,13 +80,9 @@ const Disorder = new mongoose.model("Disorder", disorderSchema);
 //   details: "https://www.betterhealth.vic.gov.au/health/conditionsandtreatments/schizophrenia",
 //   img: "schizophrenia.jpg"
 // });
+//
+// disorder.save();
 
-// const disorder = new Disorder({
-//   title: "Schizophrenia",
-//   info: "Schizophrenia is a complex psychotic disorder characterised by disruptions to thinking and emotions, and a distorted perception of reality. Symptoms of schizophrenia vary widely but may include hallucinations, delusions, thought disorder, social withdrawal, lack of motivation and impaired thinking and memory. People with schizophrenia have a high risk of suicide. Schizophrenia is not a split personality.",
-//   details: "https://www.betterhealth.vic.gov.au/health/conditionsandtreatments/schizophrenia",
-//   img: "schizophrenia.jpg"
-// });
 
 
 
@@ -113,14 +111,19 @@ app.get("/",(req,res)=>{
   });
 })
 
-app.post("/",(req,res)=>{
+app.post("/logIn",(req,res)=>{
+  var flag1=0;
   var email = req.body.email;
   var password = req.body.password;
   User.findOne({ email: req.body.email,  password: req.body.password},function (err, person) {
-  if (err) return handleError(err);
-  userName=person.name;
-})
-  res.redirect("/");
+    if (err) return handleError(err);
+    userName=person.name;
+    flag1=1;
+    res.redirect("/");
+  })
+  if(flag1==0){
+    // res.render('login-page',{Title:"Log In",userName:userName})
+  }
 })
 
 app.get("/logout",(req,res)=>{
@@ -148,7 +151,6 @@ app.get("/activity",(req,res)=>{
 app.get("/join",(req,res)=>{
   if (userName!="not-logged"){
 
-      // User.findOne({username:userName},function(error,foundUser){
         Activity.findOne({ _id:req.query.id},function(error,foundActivity){
             User.findOne({name:userName},function(error,foundUser){
               var flag=0;
@@ -174,6 +176,12 @@ app.get("/join",(req,res)=>{
 
 })
 
+
+app.get("/mySeminars",(req,res)=>{
+  User.findOne({name:userName},function(error,foundUser){
+    res.render('my-activities',{Title:"My activities",Activities:foundUser.activities,userName:userName});
+  })
+})
 
 
 app.post("/newMember",(req,res)=>{
