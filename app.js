@@ -1,9 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+
 // Mongoose  part, connection with the db
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/MENTorDB', { useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://admin-aigli:admin12345@mentor.qls1x.mongodb.net/MENTorDB', { useUnifiedTopology: true });
 
 //databases schemas
 const activitySchema = new mongoose.Schema({
@@ -16,6 +17,7 @@ const activitySchema = new mongoose.Schema({
 })
 
 const Activity = new mongoose.model("Activity", activitySchema);
+
 
 const userSchema = new mongoose.Schema({
   email: String,
@@ -34,6 +36,8 @@ const disorderSchema = new mongoose.Schema({
 })
 
 const Disorder = new mongoose.model("Disorder", disorderSchema);
+
+
 
 var activitiesTitle = [];
 var activitiesLocation = [];
